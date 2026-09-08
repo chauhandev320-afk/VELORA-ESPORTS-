@@ -1,1 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Velora Esports | Built to Compete</title>
+
+    <meta name="description"
+        content="Velora Esports — competitive gaming, tournaments and esports entertainment.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 7%;
+            background: rgba(5,5,5,0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,180,0,0.15);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .brand span {
+            color: #f5b400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #f5b400;
+        }
+
+        .menu {
+            display: none;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at center,
+                rgba(245,180,0,.20),
+                transparent 35%),
+                linear-gradient(135deg,#050505,#15120a,#050505);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(245,180,0,.18);
+            transform: rotate(45deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 2px solid rgba(245,180,0,.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            font-weight: 900;
+            color: #f5b400;
+            box-shadow: 0 0 60px rgba(245,180,0,.25);
+        }
+
+        .hero h1 {
+            font-size: clamp(42px,8vw,90px);
+            line-height: .95;
+            font-weight: 900;
+            letter-spacing: 5px;
+        }
+
+        .hero h1 span {
+            color: #f5b400;
+        }
+
+        .hero p {
+            margin: 25px auto;
+            color: #aaa;
+            max-width: 600px;
+            font-size: 17px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: .3s;
+        }
+
+        .primary {
+            background: #f5b400;
+            color: #050505;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245,180,0,.3);
+        }
+
+        .secondary {
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .secondary:hover {
+            border-color: #f5b400;
+            color: #f5b400;
+        }
+
+        /* GENERAL */
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: #f5b400;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin-top: 10px;
+        }
+
+        /* EVENTS */
+
+        .events {
+            background: #090909;
+        }
+
+        .cards {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: linear-gradient(145deg,#151515,#0b0b0b);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 28px;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245,180,0,.5);
+        }
+
+        .card .tag {
+            color: #f5b400;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+            font-size: 23px;
+        }
+
+        .card p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        /* STATS */
+
+        .stats {
+            background: #0b0b0b;
+        }
+
+        .stat-grid {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            text-align: center;
+        }
+
+        .stat h3 {
+            color: #f5b400;
+            font-size: 45px;
+        }
+
+        .stat p {
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 45px 7%;
+            text-align: center;
+            background: #030303;
+            border-top: 1px solid #181818;
+        }
+
+        footer strong {
+            color: #f5b400;
+        }
+
+        footer p {
+            color: #777;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            header {
+                padding: 16px 5%;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 25px;
+                background: #080808;
+                flex-direction: column;
+                text-align: center;
+                border-bottom: 1px solid #222;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .hero-logo {
+                width: 120px;
+                height: 120px;
+                font-size: 55px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="brand">
+            VELORA <span>ESPORTS</span>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#events">TOURNAMENTS</a></li>
+            <li><a href="#teams">TEAMS</a></li>
+            <li><a href="#results">RESULTS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+
+        <div class="menu" onclick="toggleMenu()">☰</div>
+    </nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-logo">
+            V
+        </div>
+
+        <h1>
+            VELORA<br>
+            <span>ESPORTS</span>
+        </h1>
+
+        <p>
+            Built to compete. Born to dominate.
+            Welcome to the next generation of competitive esports.
+        </p>
+
+        <div class="buttons">
+            <a href="#events" class="btn primary">
+                EXPLORE TOURNAMENTS
+            </a>
+
+            <a href="#about" class="btn secondary">
+                DISCOVER VELORA
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EVENTS -->
+
+<section class="events" id="events">
+
+    <div class="section-title">
+        <small>COMPETE WITH THE BEST</small>
+        <h2>FEATURED EVENTS</h2>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <span class="tag">UPCOMING</span>
+            <h3>Velora Championship</h3>
+            <p>
+                Competitive esports action with teams
+                fighting for glory and rewards.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="tag">LIVE</span>
+            <h3>Velora Scrims</h3>
+            <p>
+                Daily competitive matches designed
+                for serious players and teams.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="tag">COMING SOON</span>
+            <h3>Major Tournament</h3>
+            <p>
+                A new level of competition is coming
+                to the Velora arena.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="about">
+
+        <div class="section-title">
+            <small>WHO WE ARE</small>
+            <h2>ABOUT VELORA</h2>
+        </div>
+
+        <p>
+            Velora Esports is a competitive esports organisation
+           
